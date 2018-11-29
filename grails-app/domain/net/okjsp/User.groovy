@@ -60,7 +60,8 @@ class User {
 		loggedIns sort:'id', order:'desc'
 
 		if (Environment.current == Environment.DEVELOPMENT)
-			dateJoined formula: "FORMATDATETIME(date_created, 'yyyy-MM-dd')"
+			//dateJoined formula: "FORMATDATETIME(date_created, 'yyyy-MM-dd')"
+			dateJoined formula: "DATE_FORMAT(date_created, '%Y-%m-%d')"
 
 		if (Environment.current == Environment.PRODUCTION)
 			dateJoined formula: "DATE_FORMAT(date_created, '%Y-%m-%d')"

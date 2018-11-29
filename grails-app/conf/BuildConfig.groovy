@@ -65,11 +65,13 @@ grails.project.dependency.resolution = {
 
     plugins {
         // plugins for the build system only
-        build ":tomcat:7.0.70"
+        //build ":tomcat:7.0.70"
+	build "org.grails.plugins:tomcat:8.0.50"
 
         // plugins for the compile step
         compile ":scaffolding:2.1.2"
-        compile ':cache:1.1.8'
+        //compile ':cache:1.1.8'
+        compile "org.grails.plugins:cache:1.1.8"
         compile ":asset-pipeline:2.5.7"
         compile ":mysql-connectorj:5.1.22.1"
         compile ":markdown:1.1.1"
@@ -90,11 +92,13 @@ grails.project.dependency.resolution = {
         compile ":random:0.2"
 
         compile ":mail:1.0.7"
+	//compile "cglib:cglib:2.2.2"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.10" // or ":hibernate:3.6.10.15"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
+        //runtime ":resources:1.1.6"
         compile ":twitter-bootstrap:3.3.2.1"
 
         // Uncomment these to enable additional asset-pipeline capabilities
