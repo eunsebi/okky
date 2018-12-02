@@ -11,12 +11,12 @@
     <g:set var="entityName" value="${message(code: 'article.label', default: 'Article')}" />
     <title>Change Logs</title>
     <meta property="og:type"		content="article">
-    <meta property="og:site_name" content="OKKY">
+    <meta property="og:site_name" content="ekkor">
     <meta property="og:url" content="${grailsApplication.config.grails.serverURL}/changes/${params.id}">
     <meta property="og:image" content="${resource(dir: 'images', file: 'okky_logo_fb.png')}">
     %{--<meta property="og:image" content="${profileImage(size: 'fb', avatar: article.displayAuthor)}">--}%
     <meta property="og:description" content="Change Logs #${params.id}">
-    <meta property="og:title" content="OKKY | Change Logs">
+    <meta property="og:title" content="ekkor | Change Logs">
 </head>
 <body>
 

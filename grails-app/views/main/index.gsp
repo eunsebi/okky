@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main_with_banner"/>
-		<title>All That Developer</title>
+		<title>All That Community</title>
         <meta name="google-site-verification" content="DkGncyJVqYFVekHithdbYnKgklkyKVwruPZ18WUDjr0" />
 	</head>
 	<body>
