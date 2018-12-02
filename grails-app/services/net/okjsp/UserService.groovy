@@ -120,7 +120,7 @@ class UserService {
         user.dateWithdraw = new Date()
         user.accountLocked = true
         user.accountExpired = true
-        user.enabled = false
+        user.enabled = true
         user.save(flush: true)
     }
 }

@@ -8,7 +8,7 @@ class User {
 
 	String username
 	String password
-	boolean enabled = false
+	boolean enabled = true
 	boolean accountExpired = false
 	boolean accountLocked = false
 	boolean passwordExpired = false
@@ -41,7 +41,7 @@ class User {
 		password blank: false, minSize: 6, matches: /^(?=.*[0-9])(?=.*[a-zA-Z]).*$/
         person unique: true
         avatar unique: true
-        enabled bindable: false
+        enabled bindable: true
         accountExpired bindable: false
         accountLocked bindable: false
         passwordExpired bindable: false
