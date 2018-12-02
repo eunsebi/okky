@@ -8,6 +8,7 @@
 .idea
 /target
 /build
+/output
 /mem
 *.iml
 *.log

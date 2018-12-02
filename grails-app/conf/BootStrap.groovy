@@ -10,7 +10,11 @@ class BootStrap {
 //        SpringSecurityUtils.clientRegisterFilter('cookiePreAuthFilter', SecurityFilterPosition.PRE_AUTH_FILTER)
 
         def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
+        def classRole = new Role(authority: 'ROLE_CLASS').save(flush: true)
+        def leaderRole = new Role(authority: 'ROLE_LEADER').save(flush: true)
+        def maintRole = new Role(authority: 'ROLE_MAINT').save(flush: true)
         def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+
 
         environments {
             development {
@@ -107,15 +111,7 @@ class BootStrap {
          * Managed User
          */
 
-        [26163, 26660, 22488, 25959, 26838, 21356,
-
-         27039, 27430, 28983, 30983,
-
-         27238, 27183, 27354, 24552, 27453, 23889,
-         28300, 26069, 28213, 27251, 28262, 28541,
-         28752, 28828, 28837, 28838, 28654, 28272,
-         29080, 8417, 27660, 8933, 21996, 26609,
-         29972, 29982, 30361, 30362, 29897
+        [2,3,4
         ].each {
             def user = User.get(it)
             if(user) ManagedUser.findOrSaveByUser(user)
