@@ -26,15 +26,58 @@
 
             <div class="col-sm-8 main-block-left">
                 <div class="main-block">
+                    <h4 class="main-header"><i class="fa fa-comment"></i> 커뮤니티 <a href="${request.contextPath}/articles/community" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
+                    <g:render template="article_block" model="[articles:communityArticles]" />
+                </div>
+                <div class="main-block">
+                    <h4 class="main-header"><i class="fa fa-comment"></i> Inform <a href="${request.contextPath}/articles/inform" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
+                    <g:if test="${informArticles}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <g:each in="${informArticles}" var="informArticles">
+                                    <div class="article-middle-block clearfix">
+                                        <div class="list-tag clearfix" style="">
+                                            <g:categoryLabel category="${informArticles.category}" />
+                                            <g:tags tags="${informArticles.tagString}" />
+                                        </div>
+                                        <h5><g:link controller="article" action="show" id="${informArticles.id}">${fieldValue(bean: informArticles, field: "title")}</g:link></h5>
+                                        <div class="list-group-item-author clearfix">
+                                            <g:avatar avatar="${informArticles.displayAuthor}" class="pull-right" size="x-small" dateCreated="${informArticles.dateCreated}" />
+                                        </div>
+                                    </div>
+                                </g:each>
+                            </div>
+                        </div>
+                    </g:if>
+                </div>
+                <div class="main-block">
                     <h4 class="main-header"><i class="fa fa-database"></i> Q&A <a href="${request.contextPath}/articles/questions" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
                     <g:render template="article_block" model="[articles:questionsArticles]" />
                 </div>
                 <div class="main-block">
-                    <h4 class="main-header"><i class="fa fa-comment"></i> 커뮤니티 <a href="${request.contextPath}/articles/community" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
-                    <g:render template="article_block" model="[articles:communityArticles]" />
+                    <h4 class="main-header"><i class="fa fa-code"></i> Tech <a href="${request.contextPath}/articles/tech" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
+                    <g:if test="${techArticles}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <g:each in="${techArticles}" var="techArticle">
+                                    <div class="article-middle-block clearfix">
+                                        <div class="list-tag clearfix" style="">
+                                            <g:categoryLabel category="${techArticle.category}" />
+                                            <g:tags tags="${techArticle.tagString}" />
+                                        </div>
+                                        <h5><g:link controller="article" action="show" id="${techArticle.id}">${fieldValue(bean: techArticle, field: "title")}</g:link></h5>
+                                        <div class="list-group-item-author clearfix">
+                                            <g:avatar avatar="${techArticle.displayAuthor}" class="pull-right" size="x-small" dateCreated="${techArticle.dateCreated}" />
+                                        </div>
+                                    </div>
+                                </g:each>
+                            </div>
+                        </div>
+                    </g:if>
                 </div>
+                <g:banner type="MAIN_BLOCK" />
             </div>
-            <div class="col-sm-4 main-block-right">
+            %{--<div class="col-sm-4 main-block-right">
 
                 <g:banner type="MAIN_BLOCK" />
 
@@ -76,7 +119,7 @@
                     <h4 class="main-header"><i class="fa fa-book"></i> 학원/홍보 <a href="${request.contextPath}/articles/promote" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
                     <g:render template="article_block" model="[articles:promoteArticles]" />
                 </div>
-            </div>
+            </div>--}%
         </div>
         <content tag="script">
             <script>

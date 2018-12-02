@@ -92,20 +92,31 @@
 
     <ul class="nav nav-sidebar nav-main">
         <g:each in="${Category.getTopCategories()}" var="category">
-            <li <g:if test="${category.code == parentCategory?.code}">class="active"</g:if> <g:if test="${isSub}">data-toggle="tooltip" data-placement="right" data-container="body" title="<g:message code="${category.labelCode}" default="${category.defaultLabel}" />"</g:if>><g:link uri="/articles/${category.code}" class="link"><i class="nav-icon ${category.iconCssNames}"></i> <span class="nav-sidebar-label nav-sidebar-category-label"><g:message code="${category.labelCode}" default="${category.defaultLabel}" /></span></g:link></li>
+            <li
+                <g:if test="${category.code == parentCategory?.code}">class="active"</g:if>
+                <g:if test="${isSub}">data-toggle="tooltip" data-placement="right" data-container="body" title="<g:message code="${category.labelCode}" default="${category.defaultLabel}" />"</g:if>
+            >
+                <g:link uri="/articles/${category.code}" class="link"><i class="nav-icon ${category.iconCssNames}"></i> <span class="nav-sidebar-label nav-sidebar-category-label"><g:message code="${category.labelCode}" default="${category.defaultLabel}" /></span></g:link>
+            </li>
         </g:each>
     </ul>
 
-    <ul class="nav nav-sidebar nav-bottom">
+    %{--<ul class="nav nav-sidebar nav-bottom">
         <li <g:if test="${isSub}">data-toggle="tooltip" data-placement="right" data-container="body" title="Github Issues"</g:if>><g:link url="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></g:link></li>
-    </ul>
+    </ul>--}%
 </div>
 <g:if test="${isSub}">
 <g:set var="subCategories" value="${category.children ?: category.parent?.children}"/>
 <div class="sidebar-category-nav">
     <h3 class="sub-title"><g:message code="${parentCategory.labelCode}" default="${parentCategory.defaultLabel}" /></h3>
     <ul class="nav">
-        <li><g:link uri="/articles/${parentCategory.code}" class="link"><span class="nav-sidebar-label nav-sidebar-category-label">All</span> <span class="nav-indicator ${category.code == parentCategory.code ? 'nav-selected': ''}"><span class="nav-selected-dot"></span></span></g:link></li>
+        <li>
+            <g:link uri="/articles/${parentCategory.code}" class="link">
+                <span class="nav-sidebar-label nav-sidebar-category-label">All</span>
+                <span class="nav-indicator ${category.code == parentCategory.code ? 'nav-selected': ''}">
+                    <span class="nav-selected-dot"></span></span>
+            </g:link>
+        </li>
         <g:each in="${subCategories}" var="subCategory">
             <g:if test="${subCategory.isURL}">
                 <li><g:link uri="${subCategory.url}" class="link"><span class="nav-sidebar-label nav-sidebar-category-label"><g:message code="${subCategory.labelCode}" default="${subCategory.defaultLabel}" /></span> <span class="nav-indicator ${subCategory.code == category.code ? 'nav-selected': ''}"><span class="nav-selected-dot"></span></span></g:link></li>
@@ -115,7 +126,7 @@
             </g:else>
         </g:each>
     </ul>
-    <div class="special-nav">
+    %{--<div class="special-nav">
     <g:if test="${parentCategory.code == 'jobs'}">
     <ul class="nav">
         <li>
@@ -124,6 +135,6 @@
         </li>
     </ul>
     </g:if>
-    </div>
+    </div>--}%
 </div>
 </g:if>

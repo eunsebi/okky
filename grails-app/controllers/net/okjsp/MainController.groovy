@@ -30,6 +30,7 @@ class MainController {
             columnArticle: mainService.getColumnArticle(),
 //            techArticle: mainService.getTechArticle(),
             techArticles: mainService.getTechArticles(),
+            informArticles: mainService.getInformArticles(),
             promoteArticles: mainService.getPromoteArticles(),
             mainBanner : mainBanner
         ]

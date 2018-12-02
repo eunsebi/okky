@@ -60,6 +60,19 @@ class MainService {
         }.findAll()
     }
 
+    @Cacheable("informArticlesCache")
+    def getInformArticles() {
+        Article.withCriteria() {
+            fetchMode 'content', FetchMode.JOIN
+            fetchMode 'author', FetchMode.JOIN
+            //'in'('category', Category.get('tech').children)
+            Category.get('inform').children
+            eq('enabled', true)
+            order('id', 'desc')
+            maxResults(3)
+        }.findAll()
+    }
+
     @Cacheable("qnaArticlesCache")
     def getQnaArticles() {
         Article.withCriteria() {
