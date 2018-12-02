@@ -15,7 +15,6 @@ class BootStrap {
         def maintRole = new Role(authority: 'ROLE_MAINT').save(flush: true)
         def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
 
-
         environments {
             development {
                 if(!User.findByUsername('admin')) {
@@ -78,7 +77,7 @@ class BootStrap {
                     testUser.enabled = true
                     testUser.createIp = '0.0.0.0'
                     userService.saveUser testUser
-                    UserRole.create(testUser, userRole, true)
+                    UserRole.create(testUser, classRole, true)
                 }
 
                 // 1 Level Category
@@ -111,7 +110,8 @@ class BootStrap {
          * Managed User
          */
 
-        [2,3,4
+        [3, 4
+
         ].each {
             def user = User.get(it)
             if(user) ManagedUser.findOrSaveByUser(user)
