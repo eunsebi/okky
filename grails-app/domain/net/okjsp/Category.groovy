@@ -27,6 +27,7 @@ class Category implements Serializable {
     
     Boolean writeByExternalLink = false
     String externalLink
+    Integer cate_role
 
     static belongsTo = [parent: Category]
 
