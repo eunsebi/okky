@@ -52,21 +52,8 @@ class MainService {
         Article.withCriteria() {
             fetchMode 'content', FetchMode.JOIN
             fetchMode 'author', FetchMode.JOIN
-            //'in'('category', Category.get('tech').children)
-            Category.get('tech').children
-            eq('enabled', true)
-            order('id', 'desc')
-            maxResults(3)
-        }.findAll()
-    }
-
-    @Cacheable("informArticlesCache")
-    def getInformArticles() {
-        Article.withCriteria() {
-            fetchMode 'content', FetchMode.JOIN
-            fetchMode 'author', FetchMode.JOIN
-            //'in'('category', Category.get('tech').children)
-            Category.get('inform').children
+            'in'('category', Category.get('tech').children)
+            //Category.get('tech').children
             eq('enabled', true)
             order('id', 'desc')
             maxResults(3)
@@ -78,8 +65,8 @@ class MainService {
         Article.withCriteria() {
             fetchMode 'content', FetchMode.JOIN
             fetchMode 'author', FetchMode.JOIN
-            //'in'('category', Category.get('questions').children)
-            Category.get('questions').children
+            'in'('category', Category.get('questions'))
+            //Category.get('questions').children
             eq('enabled', true)
             order('id', 'desc')
             maxResults(10)
@@ -94,11 +81,28 @@ class MainService {
         Article.withCriteria() {
             fetchMode 'content', FetchMode.JOIN
             fetchMode 'author', FetchMode.JOIN
-            //'in'('category', categories)
-            categories
+            'in'('category', categories)
+            //categories
             eq('enabled', true)
             order('id', 'desc')
             maxResults(20)
+        }.findAll()
+    }
+
+    @Cacheable("informArticlesCache")
+    def getInformArticles() {
+
+        //def categories = Category.get('inform').children.findAll { it.code != 'promote' }
+
+        Article.withCriteria() {
+            fetchMode 'content', FetchMode.JOIN
+            fetchMode 'author', FetchMode.JOIN
+            //'in'('category', categories)
+            'in'('category', Category.get('inform').children.findAll())
+            //Category.get('inform').children
+            eq('enabled', true)
+            order('id', 'desc')
+            maxResults(3)
         }.findAll()
     }
 
@@ -122,8 +126,8 @@ class MainService {
         def promoteArticles = Article.withCriteria() {
             fetchMode 'content', FetchMode.JOIN
             fetchMode 'author', FetchMode.JOIN
-            //'in'('category', Category.get('promote'))
-            Category.get('promote')
+            'in'('category', Category.get('promote'))
+            //Category.get('promote')
             eq('enabled', true)
             gt('dateCreated', diff)
             order('id', 'desc')

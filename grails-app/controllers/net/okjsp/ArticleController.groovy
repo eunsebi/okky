@@ -174,10 +174,11 @@ class ArticleController {
     @Transactional
     def show(Long id) {
 
+        User user = springSecurityService.loadCurrentUser()
+
         def contentVotes = [], scrapped
 
         Article article = Article.get(id)
-
 
         if (article == null || (!article.enabled && SpringSecurityUtils.ifNotGranted("ROLE_ADMIN"))) {
             notFound()
@@ -195,6 +196,8 @@ class ArticleController {
             contentVotes = ContentVote.findAllByArticleAndVoter(article, avatar)
             scrapped = Scrap.findByArticleAndAvatar(article, avatar)
         }
+
+        def category = Category.get(article.categoryId)
 
         String[] role = user.getAuthorities()
         int user_size = user.getAuthorities().size()
@@ -252,10 +255,8 @@ class ArticleController {
             return
         }
 
-        /*println "user Role: " + user.getAuthorities()
+        println "user Role: " + user.getAuthorities()
         println "Category Role : " + category.cate_role
-
-        println " user role 1 : " + user.getAuthorities().size()*/
 
         String[] role = user.getAuthorities()
         int user_size = user.getAuthorities().size()
@@ -266,6 +267,8 @@ class ArticleController {
         }
 
         boolean result = Arrays.asList(role).contains(category_role)
+
+        println " 권한 : " + result
 
         if (!result) {
             notAcceptable()

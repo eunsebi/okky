@@ -20,7 +20,8 @@ grails.plugin.springsecurity.interceptUrlMap = [
     '/articles/*/save':         ['ROLE_USER'],
     '/articles/tagged/*':       ['permitAll'],
 
-    '/article/*':               ['permitAll'],
+    //'/article/*':               ['permitAll'],
+    '/article/*':               ['ROLE_USER'],
     '/article/*/**':            ['ROLE_USER'],
 
     '/recruits':                 ['permitAll'],

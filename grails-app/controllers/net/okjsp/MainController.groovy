@@ -27,11 +27,11 @@ class MainController {
             weeklyArticles: mainService.getWeeklyArticles(),
             questionsArticles: mainService.getQnaArticles(),
             communityArticles: mainService.getCommunityArticles(),
-            columnArticle: mainService.getColumnArticle(),
-//            techArticle: mainService.getTechArticle(),
+            //columnArticle: mainService.getColumnArticle(),
+            //techArticle: mainService.getTechArticle(),
             techArticles: mainService.getTechArticles(),
             informArticles: mainService.getInformArticles(),
-            promoteArticles: mainService.getPromoteArticles(),
+            //promoteArticles: mainService.getPromoteArticles(),
             mainBanner : mainBanner
         ]
     }

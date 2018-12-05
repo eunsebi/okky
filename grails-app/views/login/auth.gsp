@@ -76,13 +76,13 @@
                     </label>
                 </div>
                 <!-- AutoPassword 추가 -->
-                <div class="APW-login">
+                %{--<div class="APW-login">
                     <span>AutoPassword&trade;</span>
                     <label class="switch">
                         <input type="checkbox" id="btnAutoPW">
                         <span class="slider round"></span>
                     </label>
-                </div>
+                </div>--}%
 
                 <!--button class="btn btn-primary btn-block" type="submit"><g:message code="springSecurity.login.button"/></button-->
 
@@ -106,6 +106,7 @@
             </form>
         </div>
     </div>
+    %{--
     <div class="col-md-6 main-block-right">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -113,12 +114,12 @@
             </div>
             <div class="panel-body panel-margin sns-buttons">
                 <oauth:connect provider="facebook" id="facebook-connect-link" class="btn btn-facebook btn-block"><i class="fa fa-facebook fa-fw"></i> Facebook 으로 로그인</oauth:connect>
-                %{--<oauth:connect provider="twitter" id="twitter-connect-link" class="btn btn-twitter btn-block"><i class="fa fa-twitter fa-fw"></i> Twitter 로 로그인</oauth:connect>--}%
+                --}%%{--<oauth:connect provider="twitter" id="twitter-connect-link" class="btn btn-twitter btn-block"><i class="fa fa-twitter fa-fw"></i> Twitter 로 로그인</oauth:connect>--}%%{--
                 <oauth:connect provider="google" id="google-connect-link" class="btn btn-google btn-block"><i class="fa fa-google fa-fw"></i> Google 로 로그인</oauth:connect>
             </div>
         </div>
     </div>
-
+--}%
 </div>
 
 <content tag="script">
