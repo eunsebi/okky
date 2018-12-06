@@ -34,15 +34,15 @@
                     <g:if test="${informArticles}">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <g:each in="${informArticles}" var="informArticles">
+                                <g:each in="${informArticles}" var="informArticle">
                                     <div class="article-middle-block clearfix">
                                         <div class="list-tag clearfix" style="">
-                                            <g:categoryLabel category="${informArticles.category}" />
-                                            <g:tags tags="${informArticles.tagString}" />
+                                            <g:categoryLabel category="${informArticle.category}" />
+                                            <g:tags tags="${informArticle.tagString}" />
                                         </div>
-                                        <h5><g:link controller="article" action="show" id="${informArticles.id}">${fieldValue(bean: informArticles, field: "title")}</g:link></h5>
+                                        <h5><g:link controller="article" action="show" id="${informArticle.id}">${fieldValue(bean: informArticle, field: "title")}</g:link></h5>
                                         <div class="list-group-item-author clearfix">
-                                            <g:avatar avatar="${informArticles.displayAuthor}" class="pull-right" size="x-small" dateCreated="${informArticles.dateCreated}" />
+                                            <g:avatar avatar="${informArticle.displayAuthor}" class="pull-right" size="x-small" dateCreated="${informArticle.dateCreated}" />
                                         </div>
                                     </div>
                                 </g:each>

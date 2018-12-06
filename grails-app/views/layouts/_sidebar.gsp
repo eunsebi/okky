@@ -100,6 +100,11 @@
             </li>
         </g:each>
     </ul>
+    <ul class="nav nav-sidebar nav-main">
+        <li>
+            <g:link uri="http://ekkor.ze.am/pay/home/payMain.do?email=" class="link"><i class="nav-icon fa fa-comments"></i><span class="nav-sidebar-label nav-sidebar-category-label">Pay</span> </g:link>
+        </li>
+    </ul>
 
     %{--<ul class="nav nav-sidebar nav-bottom">
         <li <g:if test="${isSub}">data-toggle="tooltip" data-placement="right" data-container="body" title="Github Issues"</g:if>><g:link url="https://github.com/okjsp/okky/issues" class="link" target="_blank"><i class="fa fa-github"></i> <span class="nav-sidebar-label nav-sidebar-category-label">Github Issues</span></g:link></li>

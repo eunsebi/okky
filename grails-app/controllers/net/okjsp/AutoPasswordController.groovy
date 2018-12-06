@@ -235,7 +235,7 @@ class AutoPasswordController {
                 .add("corp_id", config.autoPassword.corpId)
                 .add("token", token)
                 .add("corp_user_id", corp_user_id)
-                //.add("user_id", corp_user_id)
+        //.add("user_id", corp_user_id)
                 .add("session_yn", "Y")
                 .add("otp_token", user_otp)
                 .add("policy", "0")
@@ -294,7 +294,7 @@ class AutoPasswordController {
                 .add("token", config.autoPassword.managerToken)
                 .add("corp_user_id", corp_user_id)
                 .add("random", session.getId())
-            //.add("user_id", corp_user_id)
+        //.add("user_id", corp_user_id)
                 .add("session_yn", "Y")
                 .add("otp_token", user_otp)
                 .add("policy", "0")
@@ -397,8 +397,8 @@ class AutoPasswordController {
 
         /****************************** 구현부분  시작**********************************/
         //사용자 아이디/비밀번호 존재하는지 확인
-                boolean isOK = false; 			//정보 변경(존재할 경우 true, 존재하지 않을 경우 false)
-                boolean isAutoPW = false; 		//정보 변경(AutoPassword를 사용하는 경우 true, 사용하지 않는 경우 false)
+        boolean isOK = false; 			//정보 변경(존재할 경우 true, 존재하지 않을 경우 false)
+        boolean isAutoPW = false; 		//정보 변경(AutoPassword를 사용하는 경우 true, 사용하지 않는 경우 false)
 
         def user = User.findByUsername(corp_user_id)
 
@@ -448,7 +448,7 @@ class AutoPasswordController {
                     location.href = "${request.contextPath}/user/register";
                     </script>"""
                     return
-		        }
+                }
             }
         } else {
             render """<script>
@@ -487,7 +487,7 @@ class AutoPasswordController {
 
         /****************************** 기능구현 종료**********************************/
 
-	    if (isID) {
+        if (isID) {
 
             User user = autoPasswordOID.user
 

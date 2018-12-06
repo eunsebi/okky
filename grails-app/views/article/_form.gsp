@@ -3,13 +3,13 @@
 <%@ page import="net.okjsp.ContentTextType" %>
 
 <g:if test="${category?.anonymity}">
-    %{--<div class="form-group ${hasErrors(bean: article, field: 'title', 'error')} has-feedback">
-        <div class="alert alert-info">
-            <ul>
-                <li><b>블라블라</b> 블라블라</li>
-            </ul>
-        </div>
-    </div>--}%
+%{--<div class="form-group ${hasErrors(bean: article, field: 'title', 'error')} has-feedback">
+    <div class="alert alert-info">
+        <ul>
+            <li><b>블라블라</b> 블라블라</li>
+        </ul>
+    </div>
+</div>--}%
 </g:if>
 
 
@@ -66,21 +66,21 @@
 
     <sec:ifNotGranted roles="ROLE_ADMIN">
         <g:if test="${writableCategories.size() > 1}">
-        <div class="form-group ${hasErrors(bean: article, field: 'category', 'has-error')} has-feedback">
-            <div>
-                <select id="category" name="categoryCode" class="form-control">
-                    <option value="">게시판을 선택해 주세요.</option>
-                    <g:each in="${writableCategories}" var="category">
-                        <option value="${category.code}"
-                                <g:if test="${category.code == article?.category?.code}">selected="selected"</g:if>
-                                data-external="${category.writeByExternalLink}"
-                                data-anonymity="${category.anonymity}">
-                            ${message(code: category.labelCode, default: category.defaultLabel)}
-                        </option>
-                    </g:each>
-                </select>
+            <div class="form-group ${hasErrors(bean: article, field: 'category', 'has-error')} has-feedback">
+                <div>
+                    <select id="category" name="categoryCode" class="form-control">
+                        <option value="">게시판을 선택해 주세요.</option>
+                        <g:each in="${writableCategories}" var="category">
+                            <option value="${category.code}"
+                                    <g:if test="${category.code == article?.category?.code}">selected="selected"</g:if>
+                                    data-external="${category.writeByExternalLink}"
+                                    data-anonymity="${category.anonymity}">
+                                ${message(code: category.labelCode, default: category.defaultLabel)}
+                            </option>
+                        </g:each>
+                    </select>
+                </div>
             </div>
-        </div>
         </g:if>
         <g:else>
             <g:hiddenField name="categoryCode" value="${writableCategories?.getAt(0).code}" />

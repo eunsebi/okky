@@ -9,7 +9,6 @@ import org.hibernate.FetchMode
 import org.hibernate.type.StandardBasicTypes
 import org.springframework.http.HttpStatus
 
-import java.lang.reflect.Array
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -40,14 +39,14 @@ class ArticleController {
 
         def category = Category.get(code)
 
-        if (category == null) {
+        if(category == null) {
             notFound()
             return
         }
 
         def choiceJobs
 
-        if (category.code == 'jobs' || category.parent?.code == 'jobs') {
+        if(category.code == 'jobs' || category.parent?.code == 'jobs') {
 
             def diff = new Date() - 30
 
@@ -63,7 +62,7 @@ class ArticleController {
 
 
             choiceJobs.each {
-                if (it.isRecruit) {
+                if(it.isRecruit) {
                     Recruit recruit = Recruit.findByArticle(it)
                     it.recruit = recruit
                 }
@@ -75,13 +74,13 @@ class ArticleController {
 //        def managedAvatar = userService.getManaedAvatars(springSecurityService?.currentUser)
         def categories = category.children ?: [category]
 
-        if (category.code == 'community')
+        if(category.code == 'community')
             categories = categories.findAll { it.code != 'promote' }
 
         def recruits
         def recruitFilter = false
 
-        if (category.code == 'recruit') {
+        if(category.code == 'recruit') {
 
             def jobTypes = params.list('filter.jobType').collect { JobType.valueOf(it as String) }
             def jobDuties = params.list('filter.jobDuty').collect { JobPositionDuty.get(it as Long) }
@@ -90,11 +89,11 @@ class ArticleController {
             def maxCareer = params['filter.maxCareer']
 
             def jobPositions = JobPosition.createCriteria().list {
-                if (jobDuties)
+                if(jobDuties)
                     'in'('duty', jobDuties)
-                if (minCareer)
+                if(minCareer)
                     ge('minCareer', minCareer as Integer)
-                if (maxCareer)
+                if(maxCareer)
                     le('maxCareer', maxCareer as Integer)
             }
 
@@ -103,16 +102,16 @@ class ArticleController {
             recruitFilter = (jobTypes || cities || jobPositionFilter)
 
             recruits = Recruit.createCriteria().list {
-                if (jobTypes)
-                    'in'('jobType', jobTypes)
-                if (jobPositionFilter) {
-                    if (jobPositions) {
-                        'in'('id', jobPositions*.recruitId)
+                if(jobTypes)
+                    'in'('jobType' , jobTypes)
+                if(jobPositionFilter) {
+                    if(jobPositions) {
+                        'in'('id' , jobPositions*.recruitId)
                     } else {
-                        'in'('id', Long.MAX_VALUE)
+                        'in'('id' , Long.MAX_VALUE)
                     }
                 }
-                if (cities)
+                if(cities)
                     'in'('city', cities)
             }
         }
@@ -124,8 +123,8 @@ class ArticleController {
             if (params.query && params.query != '')
                 title =~ "%${params.query}%" || content.text =~ "%${params.query}%"
 
-            if (recruitFilter) {
-                if (recruits)
+            if(recruitFilter) {
+                if(recruits)
                     id in recruits*.article*.id
                 else
                     id in [Long.MAX_VALUE]
@@ -135,14 +134,15 @@ class ArticleController {
         def articles = articlesQuery.list(params)
 
         articles.each {
-            if (it.isRecruit) {
+            if(it.isRecruit) {
                 Recruit recruit = Recruit.findByArticle(it)
                 it.recruit = recruit
             }
         }
 
-        respond articles, model: [articlesCount: articlesQuery.count(), category: category, choiceJobs: choiceJobs, notices: notices]
+        respond articles, model:[articlesCount: articlesQuery.count(), category: category, choiceJobs: choiceJobs, notices: notices]
     }
+
 
 
     def tagged(String tag, Integer max) {
@@ -151,19 +151,19 @@ class ArticleController {
         params.order = params.order ?: 'desc'
         params.query = params.query?.trim()
 
-        if (tag == null) {
+        if(tag == null) {
             notFound()
             return
         }
 
         def articlesQuery = Article.where {
             tagString =~ "%${tag}%"
-            if (params.query && params.query != '')
+            if(params.query && params.query != '')
                 title =~ "%${params.query}%" || content.text =~ "%${params.query}%"
 
         }
 
-        respond articlesQuery.list(params), model: [articlesCount: articlesQuery.count()]
+        respond articlesQuery.list(params), model:[articlesCount: articlesQuery.count()]
     }
 
     def seq(Long id) {
@@ -255,8 +255,8 @@ class ArticleController {
             return
         }
 
-        println "user Role: " + user.getAuthorities()
-        println "Category Role : " + category.cate_role
+        /*println "user Role: " + user.getAuthorities()
+        println "Category Role : " + category.cate_role*/
 
         String[] role = user.getAuthorities()
         int user_size = user.getAuthorities().size()
@@ -268,7 +268,7 @@ class ArticleController {
 
         boolean result = Arrays.asList(role).contains(category_role)
 
-        println " 권한 : " + result
+        //println " 권한 : " + result
 
         if (!result) {
             notAcceptable()
@@ -281,7 +281,7 @@ class ArticleController {
         def categories = Category.findAllByEnabled(true)
         def goExternalLink = false
 
-        if (SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")) {
+        if(SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")) {
             writableCategories = Category.findAllByWritableAndEnabled(true, true)
         } else {
             goExternalLink = category.writeByExternalLink
@@ -291,7 +291,7 @@ class ArticleController {
 
         def notices = params.list('notices') ?: []
 
-        if (goExternalLink) {
+        if(goExternalLink) {
             redirect(url: category.externalLink)
         } else {
             respond new Article(params), model: [writableCategories: writableCategories, category: category, categories: categories, notices: notices]
@@ -308,12 +308,12 @@ class ArticleController {
 
         User user = springSecurityService.loadCurrentUser()
 
-        if (category?.code == 'recruit') {
+        if(category?.code == 'recruit') {
             redirect uri: '/recruits/create'
             return
         }
 
-        if (user.accountLocked || user.accountExpired) {
+        if(user.accountLocked || user.accountExpired) {
             forbidden()
             return
         }
@@ -323,7 +323,7 @@ class ArticleController {
             def realIp = userService.getRealIp(request)
             def reCaptchaVerified = recaptchaService.verifyAnswer(session, realIp, params)
 
-            if (!reCaptchaVerified) {
+            if(!reCaptchaVerified) {
                 throw new Exception("invalid captcha")
             }
 
@@ -332,8 +332,8 @@ class ArticleController {
             withForm {
                 Avatar author = Avatar.load(springSecurityService.principal.avatarId)
 
-                if (SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")) {
-                    article.choice = params.choice ?: false
+                if(SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")) {
+                    article.choice = params.choice?:false
                     article.enabled = !params.disabled
                     article.ignoreBest = params.ignore ?: false
                 }
@@ -352,7 +352,7 @@ class ArticleController {
                     json { respond article, [status: CREATED] }
                 }
             }.invalidToken {
-                redirect uri: "/articles/${code}", method: "GET"
+                redirect uri: "/articles/${code}", method:"GET"
             }
 
         } catch (Exception e) {
@@ -370,19 +370,19 @@ class ArticleController {
 
         Article article = Article.get(id)
 
-        if (article == null) {
+        if(article == null) {
             notFound()
             return
         }
 
-        if (SpringSecurityUtils.ifNotGranted("ROLE_ADMIN")) {
+        if(SpringSecurityUtils.ifNotGranted("ROLE_ADMIN")) {
             if (article.authorId != springSecurityService.principal.avatarId) {
                 notAcceptable()
                 return
             }
         }
 
-        if (article.category.code == 'recruit') {
+        if(article.category.code == 'recruit') {
             redirect uri: "/recruit/edit/$article.id"
             return
         }
@@ -390,13 +390,13 @@ class ArticleController {
         def writableCategories
         def categories = Category.findAllByEnabled(true)
 
-        if (SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")) {
+        if(SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")) {
             writableCategories = Category.findAllByWritableAndEnabled(true, true)
         } else {
             writableCategories = article.category.children ?: article.category.parent?.children ?: [article.category]
         }
 
-        if (params.categoryCode) {
+        if(params.categoryCode) {
             article.category = Category.get(params.categoryCode)
         }
 
@@ -410,19 +410,19 @@ class ArticleController {
 
         User user = springSecurityService.loadCurrentUser()
 
-        if (SpringSecurityUtils.ifNotGranted("ROLE_ADMIN")) {
+        if(SpringSecurityUtils.ifNotGranted("ROLE_ADMIN")) {
             if (article.authorId != springSecurityService.principal.avatarId) {
                 notAcceptable()
                 return
             }
         }
 
-        if (article.category.code == 'recruit') {
+        if(article.category.code == 'recruit') {
             redirect uri: '/recruits/create'
             return
         }
 
-        if (user.accountLocked || user.accountExpired) {
+        if(user.accountLocked || user.accountExpired) {
             forbidden()
             return
         }
@@ -435,8 +435,8 @@ class ArticleController {
 
                 Category category = Category.get(params.categoryCode)
 
-                if (SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")) {
-                    article.choice = params.choice ?: false
+                if(SpringSecurityUtils.ifAllGranted("ROLE_ADMIN")) {
+                    article.choice = params.choice?:false
                     article.enabled = !params.disabled
                     article.ignoreBest = params.ignore ?: false
                 }
@@ -478,12 +478,12 @@ class ArticleController {
             return
         }
 
-        if (user.accountLocked || user.accountExpired) {
+        if(user.accountLocked || user.accountExpired) {
             forbidden()
             return
         }
 
-        if (SpringSecurityUtils.ifNotGranted("ROLE_ADMIN")) {
+        if(SpringSecurityUtils.ifNotGranted("ROLE_ADMIN")) {
             if (article.authorId != springSecurityService.principal.avatarId) {
                 notAcceptable()
                 return
@@ -496,7 +496,7 @@ class ArticleController {
             html {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Article.label', default: 'Article'), article.id])
                 flash.status = "success"
-                redirect uri: "/articles/${categoryCode}", method: "GET"
+                redirect uri: "/articles/${categoryCode}", method:"GET"
             }
             json { render status: NO_CONTENT }
         }
@@ -516,7 +516,7 @@ class ArticleController {
 
             Avatar avatar = Avatar.get(springSecurityService.principal.avatarId)
 
-            if (Scrap.countByArticleAndAvatar(article, avatar) < 1) {
+            if(Scrap.countByArticleAndAvatar(article, avatar) < 1) {
                 articleService.saveScrap(article, avatar)
             } else {
                 articleService.deleteScrap(article, avatar)
@@ -546,7 +546,7 @@ class ArticleController {
 
         User user = springSecurityService.loadCurrentUser()
 
-        if (user.accountLocked || user.accountExpired) {
+        if(user.accountLocked || user.accountExpired) {
             forbidden()
             return
         }
@@ -645,14 +645,14 @@ class ArticleController {
 
         Article article = Article.get(id)
 
-        if (article.authorId != springSecurityService.principal.avatarId) {
+        if(article.authorId != springSecurityService.principal.avatarId) {
             notAcceptable()
             return
         }
 
         Content content = Content.get(contentId)
 
-        if (article.selectedNote == null) {
+        if(article.selectedNote == null) {
 
             content.selected = true
             content.save()
@@ -672,12 +672,12 @@ class ArticleController {
 
         Article article = Article.get(id)
 
-        if (article.authorId != springSecurityService.principal.avatarId) {
+        if(article.authorId != springSecurityService.principal.avatarId) {
             notAcceptable()
             return
         }
 
-        if (article.selectedNote != null) {
+        if(article.selectedNote != null) {
             article.selectedNote.selected = false
             article.selectedNote.save()
 
@@ -697,7 +697,7 @@ class ArticleController {
 
         Article article = content.article
 
-        def changeLogs = ChangeLog.where {
+        def changeLogs = ChangeLog.where{
             eq('article', article)
             eq('content', content)
         }.list(sort: 'id', order: 'desc')
@@ -707,12 +707,12 @@ class ArticleController {
 
         changeLogs.each { ChangeLog log ->
 
-            if (!lastTexts[log.type]) {
-                if (log.type == ChangeLogType.TITLE) {
+            if(!lastTexts[log.type]) {
+                if(log.type == ChangeLogType.TITLE) {
                     lastTexts[log.type] = article.title
-                } else if (log.type == ChangeLogType.CONTENT) {
+                } else if(log.type == ChangeLogType.CONTENT) {
                     lastTexts[log.type] = content.text
-                } else if (log.type == ChangeLogType.TAGS) {
+                } else if(log.type == ChangeLogType.TAGS) {
                     lastTexts[log.type] = article.tagString
                 }
             }

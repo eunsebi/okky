@@ -24,7 +24,7 @@ class AdminCompanyController {
 
             def companies = Company.where {
                 name =~ "%${params.where}%" ||
-                registerNumber =~ "%${params.where}%"
+                        registerNumber =~ "%${params.where}%"
             }
 
             list = companies.list(params)
