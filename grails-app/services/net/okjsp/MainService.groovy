@@ -92,13 +92,13 @@ class MainService {
     @Cacheable("informArticlesCache")
     def getInformArticles() {
 
-        //def categories = Category.get('inform').children.findAll { it.code != 'promote' }
+        def categories = Category.get('inform').children.findAll { it.code != 'promote' }
 
         Article.withCriteria() {
             fetchMode 'content', FetchMode.JOIN
             fetchMode 'author', FetchMode.JOIN
-            //'in'('category', categories)
-            'in'('category', Category.get('inform').children.findAll())
+            'in'('category', categories)
+            //'in'('category', Category.get('inform').children.findAll())
             //Category.get('inform').children
             eq('enabled', true)
             order('id', 'desc')

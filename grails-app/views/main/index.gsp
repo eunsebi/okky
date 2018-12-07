@@ -8,7 +8,7 @@
 	<body>
         <g:sidebar/>
 
-        <g:banner type="MAIN" />
+        %{--<g:banner type="MAIN" />--}%
 
         <div id="index" class="content scaffold-list clearfix" role="main">
             <div class="col-sm-6 main-block-left">
@@ -25,10 +25,6 @@
             </div>
 
             <div class="col-sm-8 main-block-left">
-                <div class="main-block">
-                    <h4 class="main-header"><i class="fa fa-comment"></i> 커뮤니티 <a href="${request.contextPath}/articles/community" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
-                    <g:render template="article_block" model="[articles:communityArticles]" />
-                </div>
                 <div class="main-block">
                     <h4 class="main-header"><i class="fa fa-comment"></i> Inform <a href="${request.contextPath}/articles/inform" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
                     <g:if test="${informArticles}">
@@ -49,6 +45,10 @@
                             </div>
                         </div>
                     </g:if>
+                </div>
+                <div class="main-block">
+                    <h4 class="main-header"><i class="fa fa-comment"></i> 커뮤니티 <a href="${request.contextPath}/articles/community" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
+                    <g:render template="article_block" model="[articles:communityArticles]" />
                 </div>
                 <div class="main-block">
                     <h4 class="main-header"><i class="fa fa-database"></i> Q&A <a href="${request.contextPath}/articles/questions" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
