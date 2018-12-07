@@ -1,7 +1,7 @@
 package net.okjsp
 
-import grails.plugin.springsecurity.oauth.FacebookOAuthToken
-import grails.plugin.springsecurity.oauth.GoogleOAuthToken
+//import grails.plugin.springsecurity.oauth.FacebookOAuthToken
+//import grails.plugin.springsecurity.oauth.GoogleOAuthToken
 import grails.transaction.Transactional
 
 class Avatar implements Comparable {
@@ -36,9 +36,9 @@ class Avatar implements Comparable {
         pictureType = type
 
         switch (type) {
-            case AvatarPictureType.FACEBOOK :
+            /*case AvatarPictureType.FACEBOOK :
                 picture = user.oAuthIDs.find { it.provider == FacebookOAuthToken.PROVIDER_NAME}.accessToken
-                break
+                break*/
             case AvatarPictureType.GRAVATAR :
                 picture = user.person.email.encodeAsMD5()
                 break

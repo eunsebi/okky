@@ -1,16 +1,16 @@
 package net.okjsp
 
-import com.megatome.grails.RecaptchaService
+//import com.megatome.grails.RecaptchaService
 import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityUtils
-import grails.plugin.springsecurity.oauth.FacebookOAuthToken
-import grails.plugin.springsecurity.oauth.GoogleOAuthToken
+//import grails.plugin.springsecurity.oauth.FacebookOAuthToken
+//import grails.plugin.springsecurity.oauth.GoogleOAuthToken
 import grails.plugin.springsecurity.oauth.OAuthLoginException
 import grails.plugin.springsecurity.oauth.OAuthToken
 import grails.plugin.springsecurity.userdetails.GrailsUser
 import grails.validation.ValidationException
 import org.codehaus.groovy.grails.web.util.WebUtils
-import org.grails.plugin.springsecurity.oauth.GoogleApi20Token
+//import org.grails.plugin.springsecurity.oauth.GoogleApi20Token
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -28,7 +28,7 @@ class SpringSecurityOAuthController {
     def customSecurityOAuthService
     def authenticationManager
     def userService
-    RecaptchaService recaptchaService
+    //RecaptchaService recaptchaService
 
     /**
      * This can be used as a callback for a successful OAuth authentication
@@ -103,7 +103,7 @@ class SpringSecurityOAuthController {
                 authenticateAndRedirect(oAuthToken, getDefaultTargetUrl())
                 return
             }
-        } else {
+        } /*else {
 
             Person person = new Person()
 
@@ -127,7 +127,7 @@ class SpringSecurityOAuthController {
             }
 
             user.person = person
-        }
+        }*/
 
         println user.person.email
 
@@ -206,23 +206,24 @@ class SpringSecurityOAuthController {
 
                     def realIp = userService.getRealIp(request)
 
-                    def reCaptchaVerified = recaptchaService.verifyAnswer(session, realIp, params)
+                    //def reCaptchaVerified = recaptchaService.verifyAnswer(session, realIp, params)
 
                     user.createIp = realIp
 
-                    if(user.hasErrors() || !reCaptchaVerified) {
+                    //if(user.hasErrors() || !reCaptchaVerified) {
+                    if(user.hasErrors()) {
                         respond user.errors, view: 'askToLinkOrCreateAccount', model: [userInstance: user]
                         return
                     }
 
                     user.addToOAuthIDs(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: user)
                     user.enabled = true
-                    if(oAuthToken.providerName == FacebookOAuthToken.PROVIDER_NAME)
-                        user.avatar.pictureType = AvatarPictureType.FACEBOOK
+                    /*if(oAuthToken.providerName == FacebookOAuthToken.PROVIDER_NAME)
+                        user.avatar.pictureType = AvatarPictureType.FACEBOOK*/
 
                     def created = userService.saveUser user
 
-                    recaptchaService.cleanUp session
+                    //recaptchaService.cleanUp session
 
                     if (created) {
                         authenticateAndRedirect(oAuthToken, getDefaultTargetUrl())

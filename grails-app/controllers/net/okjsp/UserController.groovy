@@ -1,6 +1,6 @@
 package net.okjsp
 
-import com.megatome.grails.RecaptchaService
+//import com.megatome.grails.RecaptchaService
 import grails.plugin.mail.MailService
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.SpringSecurityUtils
@@ -15,7 +15,7 @@ import grails.transaction.Transactional
 class UserController {
 
     UserService userService
-    RecaptchaService recaptchaService
+    //RecaptchaService recaptchaService
     SpringSecurityService springSecurityService
     MailService mailService
     EncryptService encryptService
@@ -79,7 +79,7 @@ class UserController {
     }
 
     def register() {
-        recaptchaService.cleanUp session
+        //recaptchaService.cleanUp session
         respond new User(params)
     }
 
@@ -90,18 +90,18 @@ class UserController {
 
             def realIp = userService.getRealIp(request)
 
-            def reCaptchaVerified = recaptchaService.verifyAnswer(session, realIp, params)
+            /*def reCaptchaVerified = recaptchaService.verifyAnswer(session, realIp, params)
 
             if(!reCaptchaVerified) {
                 respond user.errors, view: 'register'
                 return
-            }
+            }*/
 
             user.createIp = realIp
 
             userService.saveUser user
 
-            recaptchaService.cleanUp session
+            //recaptchaService.cleanUp session
 
             def key = userService.createConfirmEmail(user)
 

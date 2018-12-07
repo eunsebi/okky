@@ -5,7 +5,7 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.work.dir = "target/work"
 grails.project.target.level = 1.8
 grails.project.source.level = 1.8
-//grails.project.war.file = "target/ROOT.war"
+grails.project.war.file = "target/ROOT.war"
 
 
 grails.project.fork = [
@@ -66,16 +66,16 @@ grails.project.dependency.resolution = {
     plugins {
         // plugins for the build system only
         //build ":tomcat:7.0.70"
-	build "org.grails.plugins:tomcat:8.0.50"
+	    build "org.grails.plugins:tomcat:8.0.50"
 
         // plugins for the compile step
         compile ":scaffolding:2.1.2"
-        //compile ':cache:1.1.8'
-        compile "org.grails.plugins:cache:1.1.8"
+        compile ':cache:1.1.8'
+        //compile "org.grails.plugins:cache:1.1.8"
         compile ":asset-pipeline:2.5.7"
         compile ":mysql-connectorj:5.1.22.1"
         compile ":markdown:1.1.1"
-        compile ":recaptcha:1.0.0"
+        //compile ":recaptcha:1.0.0"
         compile ":pretty-time:2.1.3.Final-1.0.1"
         compile ":cookie:0.51"
         compile ":quartz:1.0.2"
@@ -84,21 +84,19 @@ grails.project.dependency.resolution = {
 
         compile ":spring-security-core:2.0-RC4"
         compile ":spring-security-oauth:2.1.0-RC4"
-        compile ":spring-security-oauth-facebook:0.2"
-        compile ":spring-security-oauth-google:0.3.1"
+        //compile ":spring-security-oauth-facebook:0.2"
+        //compile ":spring-security-oauth-google:0.3.1"
 
         compile "org.grails.plugins:spring-mobile:1.1.3"
 
         compile ":random:0.2"
 
         compile ":mail:1.0.7"
-	//compile "cglib:cglib:2.2.2"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.10" // or ":hibernate:3.6.10.15"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
-        //runtime ":resources:1.1.6"
         compile ":twitter-bootstrap:3.3.2.1"
 
         // Uncomment these to enable additional asset-pipeline capabilities

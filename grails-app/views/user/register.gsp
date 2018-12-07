@@ -51,7 +51,7 @@
                         </div>
                     </fieldset>
 
-                    <div class="recaptcha-wrapper">
+                    %{--<div class="recaptcha-wrapper">
                         <recaptcha:ifEnabled>
                             <recaptcha:ifFailed>
                                 <div  class="alert alert-danger alert-dismissible" role="alert">
@@ -60,11 +60,11 @@
                                     </ul>
                                 </div>
                             </recaptcha:ifFailed>
-                            %{--<script src="https://www.google.com/recaptcha/api.js" async defer></script>--}%
-                            %{--<div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw"></div>--}%
+                            --}%%{--<script src="https://www.google.com/recaptcha/api.js" async defer></script>--}%%{--
+                            --}%%{--<div class="g-recaptcha" data-sitekey="6Lcvw_gSAAAAAH3zOofJBJOFLpmjx7Vq3hxnYIRw"></div>--}%%{--
                             <recaptcha:recaptcha/>
                         </recaptcha:ifEnabled>
-                    </div>
+                    </div>--}%
 
                     <button class="btn btn-primary btn-block" type="submit"><g:message code="user.button.join.label" default="회원가입"/></button>
 
