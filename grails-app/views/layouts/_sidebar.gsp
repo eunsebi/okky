@@ -102,7 +102,7 @@
     </ul>
     <ul class="nav nav-sidebar nav-main">
         <li>
-            <g:link uri="http://ekkor.ze.am/pay/home/payMain.do?email=" class="link"><i class="nav-icon fa fa-comments"></i><span class="nav-sidebar-label nav-sidebar-category-label">Pay</span> </g:link>
+            <g:link uri="/pay" class="link"><i class="nav-icon fa fa-comments"></i><span class="nav-sidebar-label nav-sidebar-category-label">Pay</span> </g:link>
         </li>
     </ul>
 

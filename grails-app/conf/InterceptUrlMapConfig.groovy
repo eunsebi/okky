@@ -88,5 +88,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
         '/autoPassword/**':         ['permitAll'],
         '/grails-errorhandler':         ['permitAll'],
 
+        '/pay/**':             ['permitAll'],
+
         '/_admin/**':               ['ROLE_ADMIN']
 ]

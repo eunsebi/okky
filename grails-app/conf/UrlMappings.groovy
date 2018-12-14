@@ -65,6 +65,9 @@ class UrlMappings {
 
                 "/banner/stats/$id(.$format)?"(controller: "banner", action: "stats")
 
+                "/pay"(controller: "pay", action: "index")
+                "/pay/payMonthSelect"(controller: "pay", action: "payMonthSelect")
+
                 /* Admin */
 
                 "/_admin/banner/$action?/$id?(.$format)?"(controller: "banner")
