@@ -78,7 +78,6 @@ if (typeof jQuery !== 'undefined') {
         $.onImageUpload = function($editor) {
 
             return function(files) {
-
               var createImage = function (sUrl, filename) {
                 return $.Deferred(function (deferred) {
                   var $img = $('<img>');
