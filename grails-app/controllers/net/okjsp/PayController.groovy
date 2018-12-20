@@ -10,6 +10,26 @@ class PayController {
 
     }
 
+    def payScheduleArticle(String smonth, String emonth) {
+
+        String writer = "";
+
+        if (req.getSession().getAttribute(CommonUtil.SESSION_USER) != null) {
+            writer = (String) req.getSession().getAttribute(CommonUtil.SESSION_USER);
+        } else {
+            writer = email;
+        }
+
+        System.out.println("write : "  + writer);
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("write", writer);
+        paramMap.put("sDay", syear + "/" + smonth + "/01");
+        paramMap.put("eDay", eyear + "/" + emonth + "/01");
+        List<Map<String, String>> resultMap = homeService.getScheduleArticles(paramMap);
+
+        return resultMap;
+    }
+
     def payMonthSelect(String syear, String smonth) {
         User user = springSecurityService.loadCurrentUser()
 

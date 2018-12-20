@@ -105,7 +105,7 @@ jui.ready(function(ui, uix, _) {
 	    format: "yyyy/MM/dd",
 	    event: {
 	       select: function(date, e) {
-	    	   refrashRow(scheduleArticle,{url: getContextPath()+'/home/scheduleArticle.do', param:{page : 1, today : date}});
+	    	   refrashRow(scheduleArticle,{url: getContextPath()+'/pay/payScheduleArticle', param:{page : 1, today : date}});
 	       },
 	       prev: function(e) {
 	       },
