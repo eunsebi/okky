@@ -8,6 +8,12 @@ class PayController {
 
     def index() {
 
+        User user = springSecurityService.loadCurrentUser()
+
+        println "id : " + user.getUsername()
+
+        return [ pay: user.getUsername() ]
+
     }
 
     def payMonthSelect(String syear, String smonth) {
