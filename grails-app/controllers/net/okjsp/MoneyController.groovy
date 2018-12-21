@@ -2,7 +2,7 @@ package net.okjsp
 
 import grails.plugin.springsecurity.SpringSecurityService
 
-class SalController {
+class MoneyController {
 
     SpringSecurityService springSecurityService
 
