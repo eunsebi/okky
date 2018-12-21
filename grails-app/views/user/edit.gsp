@@ -91,7 +91,7 @@
         </g:if>
     </div>
     <div class="col-md-6 main-block-right">
-        <div class="panel panel-default">
+        %{--<div class="panel panel-default">
             <div class="panel-heading">
                 <h5 class="panel-header">SNS 연결</h5>
             </div>
@@ -102,12 +102,12 @@
                 <g:else>
                     <oauth:connect provider="facebook" id="facebook-connect-link" class="btn btn-facebook btn-block"><i class="fa fa-facebook fa-fw"></i> Facebook 연결하기</oauth:connect>
                 </g:else>
-                %{--<g:if test="${user.oAuthIDs.find{ it.provider == 'twitter' }}">
+                --}%%{--<g:if test="${user.oAuthIDs.find{ it.provider == 'twitter' }}">
                     <div id="facebook-connect-link" class="btn btn-disconnect btn-block"><i class="fa fa-chain-broken fa-fw"></i> Twitter 연결 끊기</div>
                 </g:if>
                 <g:else>
                     <oauth:connect provider="twitter" id="twitter-connect-link" class="btn btn-twitter btn-block"><i class="fa fa-twitter fa-fw"></i> Twitter 연결하기</oauth:connect>
-                </g:else>--}%
+                </g:else>--}%%{--
                 <g:if test="${user.oAuthIDs.find{ it.provider == 'google' }}">
                     <div id="facebook-connect-link" class="btn btn-disconnect btn-block"><i class="fa fa-chain-broken fa-fw"></i> Google 연결 끊기</div>
                 </g:if>
@@ -115,7 +115,7 @@
                     <oauth:connect provider="google" id="google-connect-link" class="btn btn-google btn-block"><i class="fa fa-google fa-fw"></i> Google 연결하기</oauth:connect>
                 </g:else>
             </div>
-        </div>
+        </div>--}%
         <div class="panel panel-default">
             <div class="panel-body panel-margin">
                 <g:link controller="user" action="passwordChange" class="btn btn-info btn-block"><g:message code="user.button.passwordChange.label" default="비밀번호 변경"/></g:link>
@@ -124,7 +124,7 @@
             </div>
         </div>
     </div>
-    <g:if test="${user.oid == null}">
+    %{--<g:if test="${user.oid == null}">
     <div class="col-md-12 APW-setting">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -157,7 +157,7 @@
             </div>
         </div>
     </div>
-    </g:if>
+    </g:if>--}%
 
 </div>
 
