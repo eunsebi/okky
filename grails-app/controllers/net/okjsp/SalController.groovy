@@ -2,7 +2,7 @@ package net.okjsp
 
 import grails.plugin.springsecurity.SpringSecurityService
 
-class PayController {
+class SalController {
 
     SpringSecurityService springSecurityService
 
@@ -10,7 +10,7 @@ class PayController {
 
         User user = springSecurityService.loadCurrentUser()
 
-        println "id : " + user.getUsername()
+        //println "id : " + user.getUsername()
 
         return [ pay: user.getUsername() ]
 
