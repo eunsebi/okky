@@ -3,7 +3,7 @@
 	<head>
 		<meta name="layout" content="main_with_banner"/>
 		<title>All That Community</title>
-        <meta name="google-site-verification" content="DkGncyJVqYFVekHithdbYnKgklkyKVwruPZ18WUDjr0" />
+        %{-- <meta name="google-site-verification" content="DkGncyJVqYFVekHithdbYnKgklkyKVwruPZ18WUDjr0" /> --}%
 	</head>
 	<body>
         <g:sidebar/>
@@ -26,6 +26,38 @@
 
             <div class="col-sm-8 main-block-left">
                 <div class="main-block">
+                    <h4 class="main-header"><i class="fa fa-comment"></i> Class Inform</h4>
+                    <g:render template="article_block" model="[articles:classArticles]" />
+                </div>
+            </div>
+
+            <div class="col-sm-6 main-block-left">
+                <div class="main-block">
+                    <h4 class="main-header"><i class="fa fa-comment"></i> Leader Inform</h4>
+                    <g:render template="article_block" model="[articles:leaderArticles]" />
+                </div>
+            </div>
+            <div class="col-sm-6 main-block-right">
+                <div class="main-block">
+                    <h4 class="main-header"><i class="fa fa-comment"></i> Maint Inform</h4>
+                    <g:render template="article_block" model="[articles:maintArticles]" />
+                </div>
+            </div>
+            <div class="col-sm-6 main-block-left">
+                <div class="main-block">
+                    <h4 class="main-header"><i class="fa fa-comment"></i> 커뮤니티 <a href="${request.contextPath}/articles/community" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
+                    <g:render template="article_block" model="[articles:communityArticles]" />
+                </div>
+            </div>
+            <div class="col-sm-6 main-block-right">
+                <div class="main-block">
+                    <h4 class="main-header"><i class="fa fa-database"></i> Q&A <a href="${request.contextPath}/articles/questions" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
+                    <g:render template="article_block" model="[articles:questionsArticles]" />
+                </div>
+            </div>
+
+            <div class="col-sm-8 main-block-left">
+                %{--<div class="main-block">
                     <h4 class="main-header"><i class="fa fa-comment"></i> Inform <a href="${request.contextPath}/articles/inform" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
                     <g:if test="${informArticles}">
                         <div class="panel panel-default">
@@ -45,15 +77,8 @@
                             </div>
                         </div>
                     </g:if>
-                </div>
-                <div class="main-block">
-                    <h4 class="main-header"><i class="fa fa-comment"></i> 커뮤니티 <a href="${request.contextPath}/articles/community" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
-                    <g:render template="article_block" model="[articles:communityArticles]" />
-                </div>
-                <div class="main-block">
-                    <h4 class="main-header"><i class="fa fa-database"></i> Q&A <a href="${request.contextPath}/articles/questions" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
-                    <g:render template="article_block" model="[articles:questionsArticles]" />
-                </div>
+                </div>--}%
+
                 <div class="main-block">
                     <h4 class="main-header"><i class="fa fa-code"></i> Tech <a href="${request.contextPath}/articles/tech" class="main-more-btn pull-right"><i class="fa fa-ellipsis-h"></i></a></h4>
                     <g:if test="${techArticles}">
@@ -75,7 +100,7 @@
                         </div>
                     </g:if>
                 </div>
-                <g:banner type="MAIN_BLOCK" />
+                %{--<g:banner type="MAIN_BLOCK" />--}%
             </div>
             %{--<div class="col-sm-4 main-block-right">
 

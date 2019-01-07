@@ -16,7 +16,7 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'icon_114x114.png')}">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <meta property="og:image" content="${resource(dir: 'images', file: 'okky_logo_fb.png')}">
-        
+
         <asset:stylesheet src="application.css"/>
 
         <!--[if lt IE 9]>
@@ -31,8 +31,8 @@
                 <g:layoutBody/>
                 <div class="right-banner-wrapper">
 
-                    <g:banner type="${isIndex ? "MAIN_RIGHT_TOP" : "SUB_RIGHT_TOP"}" />
-                    <g:banner type="${isIndex ? "MAIN_RIGHT_BOTTOM" : "SUB_RIGHT_BOTTOM"}" />
+                    %{--<g:banner type="${isIndex ? "MAIN_RIGHT_TOP" : "SUB_RIGHT_TOP"}" />
+                    <g:banner type="${isIndex ? "MAIN_RIGHT_BOTTOM" : "SUB_RIGHT_BOTTOM"}" />--}%
                     %{--<div class="google-ad"><g:link url="http://www.nagaja.net" target="_new"><asset:image src="nagaja_banner_160.png" alt="www.nagaja.net" title="www.nagaja.net" /></g:link></div>--}%
                 </div>
                 <div id="footer" class="footer" role="contentinfo">

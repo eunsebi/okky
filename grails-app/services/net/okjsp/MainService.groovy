@@ -106,6 +106,45 @@ class MainService {
         }.findAll()
     }
 
+    @Cacheable("classArticlesCache")
+    def getClassArticles() {
+        Article.withCriteria() {
+            fetchMode 'content', FetchMode.JOIN
+            fetchMode 'author', FetchMode.JOIN
+            'in'('category', Category.get('class'))
+            //Category.get('questions').children
+            eq('enabled', true)
+            order('id', 'desc')
+            maxResults(4)
+        }.findAll()
+    }
+
+    @Cacheable("leaderArticlesCache")
+    def getLeaderArticles() {
+        Article.withCriteria() {
+            fetchMode 'content', FetchMode.JOIN
+            fetchMode 'author', FetchMode.JOIN
+            'in'('category', Category.get('leader'))
+            //Category.get('questions').children
+            eq('enabled', true)
+            order('id', 'desc')
+            maxResults(4)
+        }.findAll()
+    }
+
+    @Cacheable("maintArticlesCache")
+    def getMaintArticles() {
+        Article.withCriteria() {
+            fetchMode 'content', FetchMode.JOIN
+            fetchMode 'author', FetchMode.JOIN
+            'in'('category', Category.get('maint'))
+            //Category.get('questions').children
+            eq('enabled', true)
+            order('id', 'desc')
+            maxResults(4)
+        }.findAll()
+    }
+
     @Cacheable("columnsArticlesCache")
     def getColumnArticle() {
         Article.withCriteria() {
